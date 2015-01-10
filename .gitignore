@@ -1,0 +1,7 @@
+/Sketchbook/hardware/*
+/Sketchbook/libraries/*
+!/Sketchbook/libraries/Gamebuino
+!/Sketchbook/libraries/Platformer
+/Sketchbook/libraries/Gamebuino/examples
+
+

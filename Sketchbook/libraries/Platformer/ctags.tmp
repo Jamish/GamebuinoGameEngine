@@ -1,0 +1,126 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_MOD_BY	Bostjan Mihoric	/ccompletion@gmail.com/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	/unofficial modification/
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	/unofficial modification/
+ACTORS	Engine.h	11;"	macro
+ACTOR_H	Actor.h	2;"	macro
+Actor	Actor.cpp	3;"	function	class:Actor
+Actor	Actor.h	16;"	prototype	class:Actor
+Actor	Actor.h	8;"	class
+ENGINE_H	Engine.h	2;"	macro
+Engine	Engine.cpp	30;"	function	class:Engine
+Engine	Engine.h	14;"	class
+Engine	Engine.h	26;"	prototype	class:Engine
+MOVINGACTOR_H	MovingActor.h	2;"	macro
+MovingActor	MovingActor.cpp	5;"	function	class:MovingActor
+MovingActor	MovingActor.h	15;"	prototype	class:MovingActor
+MovingActor	MovingActor.h	6;"	class
+PLAYER_H	Player.h	2;"	macro
+PROGMEM	Engine.cpp	17;"	variable
+PROGMEM	Engine.cpp	4;"	variable
+PROGMEM	Player.cpp	12;"	variable
+PROGMEM	Player.cpp	25;"	variable
+Player	Player.cpp	32;"	function	class:Player
+Player	Player.h	6;"	class
+Player	Player.h	8;"	prototype	class:Player
+SPRITE_SIZE	Engine.h	12;"	macro
+a	Player.cpp	46;"	local
+actors	Engine.h	18;"	member	class:Engine
+addActor	Engine.cpp	146;"	function	class:Engine
+addActor	Engine.h	24;"	prototype	class:Engine
+air	MovingActor.h	13;"	member	class:MovingActor
+ani_current	Player.h	16;"	member	class:Player
+ani_frame	Player.h	17;"	member	class:Player
+ani_length	Player.h	15;"	member	class:Player
+ani_next	Player.h	14;"	member	class:Player
+ani_restart	Player.cpp	217;"	function	class:Player
+ani_restart	Player.h	11;"	prototype	class:Player
+ani_timer	Player.h	13;"	member	class:Player
+animationSpeed	MovingActor.h	8;"	member	class:MovingActor
+b	Player.cpp	47;"	local
+b_press	Player.cpp	48;"	local
+b_released	Player.cpp	49;"	local
+begin	Actor.h	17;"	prototype	class:Actor
+begin	Engine.cpp	44;"	function	class:Engine
+begin	Engine.cpp	45;"	prototype	file:
+begin	Engine.h	21;"	prototype	class:Engine
+bitmap_index	Player.cpp	195;"	local
+bitmap_index	Player.cpp	202;"	local
+byteWidth	Engine.cpp	130;"	local
+byteWidth	Engine.cpp	95;"	local
+camera_x	Engine.h	19;"	member	class:Engine
+camera_y	Engine.h	19;"	member	class:Engine
+down	Player.cpp	45;"	local
+draw	Actor.cpp	18;"	function	class:Actor
+draw	Actor.h	20;"	prototype	class:Actor
+draw	Engine.cpp	87;"	prototype	file:
+draw	MovingActor.cpp	46;"	function	class:MovingActor
+draw	MovingActor.cpp	47;"	prototype	class:Actor	file:
+draw	MovingActor.h	17;"	prototype	class:MovingActor
+draw	Player.cpp	186;"	function	class:Player
+draw	Player.h	10;"	prototype	class:Player
+drawBitmap	Engine.cpp	117;"	prototype	file:
+drawBitmap	Player.cpp	199;"	prototype	file:
+drawRect	Actor.cpp	22;"	prototype	file:
+facing	MovingActor.h	9;"	member	class:MovingActor
+fillRect	Actor.cpp	20;"	prototype	file:
+flip	Player.cpp	187;"	local
+fric	Player.cpp	57;"	local
+g	MovingActor.h	12;"	member	class:MovingActor
+gb	Engine.h	17;"	member	class:Engine
+get	Engine.cpp	34;"	function	class:Engine
+get	Engine.h	16;"	prototype	class:Engine
+h	Actor.h	14;"	member	class:Actor
+h	Engine.cpp	129;"	local
+h	Engine.cpp	93;"	local
+id	Actor.h	10;"	member	class:Actor
+left	Player.cpp	42;"	local
+maxRunSpeed	Player.cpp	74;"	local
+maxSpeed	Player.cpp	73;"	local
+pEngine	Engine.cpp	27;"	member	class:Engine	file:
+pEngine	Engine.h	27;"	member	class:Engine
+playCancel	MovingActor.cpp	24;"	prototype	file:
+playTick	Player.cpp	197;"	prototype	file:
+println	Player.cpp	180;"	prototype	file:
+println	Player.cpp	182;"	prototype	file:
+right	Player.cpp	43;"	local
+runSpeed	Player.cpp	59;"	local
+setColor	Actor.cpp	19;"	prototype	file:
+setColor	Actor.cpp	21;"	prototype	file:
+setColor	Engine.cpp	116;"	prototype	file:
+setFont	Engine.cpp	47;"	prototype	file:
+speed	Player.cpp	58;"	local
+tileAtPosition	Engine.cpp	124;"	function	class:Engine
+tileAtPosition	Engine.h	23;"	prototype	class:Engine
+tileNumber	Engine.cpp	104;"	local
+tileNumber	Engine.cpp	135;"	local
+tile_x	Engine.cpp	125;"	local
+tile_y	Engine.cpp	126;"	local
+up	Player.cpp	44;"	local
+update	Actor.cpp	12;"	function	class:Actor
+update	Actor.h	19;"	prototype	class:Actor
+update	Engine.cpp	63;"	function	class:Engine
+update	Engine.cpp	76;"	prototype	file:
+update	Engine.h	22;"	prototype	class:Engine
+update	MovingActor.cpp	14;"	function	class:MovingActor
+update	MovingActor.cpp	43;"	prototype	class:Actor	file:
+update	MovingActor.h	16;"	prototype	class:MovingActor
+update	Player.cpp	148;"	prototype	class:MovingActor	file:
+update	Player.cpp	41;"	function	class:Player
+update	Player.h	9;"	prototype	class:Player
+vx	MovingActor.h	10;"	member	class:MovingActor
+vy	MovingActor.h	11;"	member	class:MovingActor
+w	Actor.h	13;"	member	class:Actor
+w	Engine.cpp	128;"	local
+w	Engine.cpp	92;"	local
+x	Actor.h	11;"	member	class:Actor
+x	Engine.cpp	94;"	local
+x_screen	Engine.cpp	82;"	local
+x_screen	Engine.cpp	98;"	local
+y	Actor.h	12;"	member	class:Actor
+y	Engine.cpp	94;"	local
+y_screen	Engine.cpp	83;"	local
+y_screen	Engine.cpp	99;"	local
