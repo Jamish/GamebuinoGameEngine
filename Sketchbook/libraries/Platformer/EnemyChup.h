@@ -10,7 +10,6 @@ class EnemyChup : public Enemy {
         //Methods
     
         //Methods to Override
-    	EnemyChup(int _x, int _y);
         void update();
         void draw(int x_screen, int y_screen);    
         

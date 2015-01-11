@@ -1,6 +1,13 @@
 #include "Engine.h"
 #include "Actor.h"
-Actor::Actor(int _x, int _y) {
+Actor::Actor() {
+    type = T_ACTOR;
+    marked_for_deletion = 0;
+    w = SPRITE_SIZE;
+    h = SPRITE_SIZE;
+}
+
+void Actor::init(int _x, int _y) {
     type = T_ACTOR;
     marked_for_deletion = 0;
     x = _x; 

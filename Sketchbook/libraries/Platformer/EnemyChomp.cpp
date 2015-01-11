@@ -7,9 +7,9 @@ const byte sprite[][8] PROGMEM =
     {8,6,0x0,0xFC,0xD4,0xFC,0xA8,0xFC,},
 };
 
-EnemyChomp::EnemyChomp(int _x, int _y) : Enemy(_x, _y) {
+// EnemyChomp::EnemyChomp() : Enemy() {
 
-}
+// }
 
 void EnemyChomp::update() {
     float fric = 1;

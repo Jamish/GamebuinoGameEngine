@@ -17,7 +17,7 @@ class Player : public MovingActor {
         void ani_restart();
         
         //Methods to Override
-    	Player(int _x, int _y);
+        void init(int _x, int _y);
         void update();
         void draw(int x_screen, int y_screen);
         void die();

@@ -1,12 +1,18 @@
 #include "Engine.h"
 #include "Enemy.h"
 
-Enemy::Enemy(int _x, int _y) : MovingActor(_x, _y) {
+Enemy::Enemy() : MovingActor() {
+}
+
+void Enemy::init(int _x, int _y) {
+    dead = 0;
     type = T_ENEMY;
     facing = -1;
+    MovingActor::init(_x, _y);
 }
 
 void Enemy::update() {
+    Serial.println(F("ENEMY!"));
     MovingActor::update();
     
     if (dead > 0) {

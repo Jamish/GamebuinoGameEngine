@@ -21,7 +21,7 @@ const byte ani_list[][8] PROGMEM =
 
 
 
-Player::Player(int _x, int _y) : MovingActor(_x, _y) {
+void Player::init(int _x, int _y) {
     type = T_PLAYER;
     facing = 1;
     
@@ -30,6 +30,8 @@ Player::Player(int _x, int _y) : MovingActor(_x, _y) {
     ani_length = 8;
     ani_frame = 0;
     ani_current = 0; // running    
+    
+    MovingActor::init(_x, _y);
 }
 
 void Player::update() {

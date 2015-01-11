@@ -17,7 +17,8 @@ class Actor {
         uint8_t h;
         
         //Methods
-        Actor(int _x, int _y);
+        Actor();
+        void init(int _x, int _y);
         void begin();
         virtual void update();
         virtual void draw(int x_screen, int y_screen);

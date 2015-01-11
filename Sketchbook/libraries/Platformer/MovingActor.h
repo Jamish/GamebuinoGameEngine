@@ -15,7 +15,7 @@ class MovingActor : public Actor {
         //Methods
         
         //Methods to Override
-    	MovingActor(int _x, int _y);
+        void init(int _x, int _y);
         void update();
         void draw(int x_screen, int y_screen);
     

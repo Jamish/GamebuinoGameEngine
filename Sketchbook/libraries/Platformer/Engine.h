@@ -42,6 +42,8 @@ extern Engine eng;
 class Engine {
     public:
 		Actor* actors[ACTORS];
+        Player player;
+        Enemy enemies[8];
         
         void begin();
 		void update();

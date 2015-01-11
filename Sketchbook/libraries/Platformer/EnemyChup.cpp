@@ -7,11 +7,12 @@ const byte sprite[][8] PROGMEM =
     {8,6,0x0,0x0,0x78,0x50,0x78,0x8,},
 };
 
-EnemyChup::EnemyChup(int _x, int _y) : Enemy(_x, _y) {
+// EnemyChup::EnemyChup() : Enemy() {
 
-}
+// }
 
 void EnemyChup::update() {
+    Serial.println(F("CHUP!"));
     if (!dead) {
         vx = facing / 2.0;
     }

@@ -7,11 +7,15 @@ class Enemy : public MovingActor {
     public:  	
         //Properties
         uint8_t dead;
+        struct data {
+            byte b[8]; // 8 bytes of extra AI or whatever?
+        };
         
         //Methods
     
         //Methods to Override
-    	Enemy(int _x, int _y);
+        Enemy();
+    	void init(int _x, int _y);
         void update();
         void draw(int x_screen, int y_screen);
         void die();
