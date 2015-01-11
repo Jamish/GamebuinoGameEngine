@@ -10,7 +10,7 @@ class Actor {
         //Properties
         uint8_t type;
         uint8_t id;
-        boolean marked_for_deletion;
+        bool marked_for_deletion;
         float x;
         float y;
         uint8_t w;

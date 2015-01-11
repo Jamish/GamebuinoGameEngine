@@ -11,6 +11,7 @@ class Player : public MovingActor {
         uint8_t ani_length;
         uint8_t ani_current;
         uint8_t ani_frame;
+        bool invuln_frame; // A little hack so the player doesn't die when stomping on two enemies at once
         
         //Methods
         void ani_restart();

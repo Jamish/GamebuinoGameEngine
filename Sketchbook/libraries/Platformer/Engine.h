@@ -8,6 +8,9 @@
 #include "Actor.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "EnemyChup.h"
+#include "EnemyChomp.h"
+
 
 //crap
 extern Gamebuino gb;

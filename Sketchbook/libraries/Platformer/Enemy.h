@@ -17,7 +17,7 @@ class Enemy : public MovingActor {
         void die();
         void collideWith(Actor* other);        
         
-    private:
+    protected:
         void reverse();
         
 };

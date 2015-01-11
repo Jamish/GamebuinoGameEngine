@@ -1,14 +1,6 @@
 #include "Engine.h"
 #include "Player.h"
 
-
-// void Player::collideWith(Actor* other) {
-    
-
-
-//     Actor::collideWith(other);
-// }
-
 const byte guy[][8] PROGMEM = 
 {
     {8,6, 0x78, 0x50, 0x78, 0xFC, 0x78, 0xCC,}, //standing
@@ -49,6 +41,7 @@ void Player::update() {
     uint8_t b = gb.buttons.repeat(BTN_B, 1);
     uint8_t b_press = gb.buttons.pressed(BTN_B);
     uint8_t b_released = gb.buttons.released(BTN_B);
+    
     
     float fric = .25;
     float speed = .2;
@@ -111,7 +104,7 @@ void Player::update() {
         vx = vx < 0 ? 0 : vx;
     }
     
-    //Jumping velocity
+    //Jumping
     int8_t wallJumpDirection = 0;
     if (eng.solidCollisionAtPosition(x + 2, y, w, h) && (left || right)) {
         wallJumpDirection = -1; //Jump off a right wall toward the left
@@ -120,9 +113,8 @@ void Player::update() {
         wallJumpDirection = 1; //Jump off a left wall toward the right. This one has a threshold of 1 instead of 2 because of floats always rounding down when cast to int.
     }
     
-    boolean canWallJump = wallJumpDirection != 0 && air;
+    bool canWallJump = wallJumpDirection != 0 && air && !invuln_frame; // Cannot wall jump the same frame as killing an enemy
 
-    
     if (b_press && (!air || canWallJump)) {
         jump();
         if (canWallJump) {
@@ -146,6 +138,7 @@ void Player::update() {
       vy = 2.6;
     }
     
+    invuln_frame = 0;
     
     MovingActor::update();
     
@@ -178,11 +171,11 @@ void Player::update() {
     //DEBUGGING
     gb.display.cursorX = 0;
     gb.display.cursorY = 0;
-    // gb.display.print(F("("));
-    // gb.display.print(x);
-    // gb.display.print(F(","));
-    // gb.display.print(y);
-    // gb.display.println(F(")"));
+    gb.display.print(F("("));
+    gb.display.print(x);
+    gb.display.print(F(","));
+    gb.display.print(y);
+    gb.display.println(F(")"));
     // gb.display.print(F("vx: "));
     // gb.display.println(vx);
     // gb.display.print(F("vy: "));
@@ -257,7 +250,8 @@ void Player::collideWith(Actor* other) {
                 if (vy > 0) {
                     o->die();
                     jump();
-                } else {
+                    invuln_frame = 1;
+                } else if (!invuln_frame) {
                     die();
                 }
             }
