@@ -56,8 +56,6 @@ class Engine {
 
     private:
         int camera_x, camera_y;
-        
-        static Engine* pEngine; // Singleton instance
 };
 
 #endif
