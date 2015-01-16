@@ -10,11 +10,11 @@
 // }
 
 void MovingActor::init(int _x, int _y) {
+    Actor::init(_x, _y);
     type = T_MOVINGACTOR;
     vx = 0;
     vy = 0;
     g = 0.60;
-    Actor::init(_x, _y);
 }
 
 void MovingActor::update() {

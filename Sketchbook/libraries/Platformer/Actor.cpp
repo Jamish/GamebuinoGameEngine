@@ -2,14 +2,14 @@
 #include "Actor.h"
 Actor::Actor() {
     type = T_ACTOR;
-    marked_for_deletion = 0;
+    active = 0;
     w = SPRITE_SIZE;
     h = SPRITE_SIZE;
 }
 
 void Actor::init(int _x, int _y) {
     type = T_ACTOR;
-    marked_for_deletion = 0;
+    active = 1;
     x = _x; 
     y = _y;
     w = SPRITE_SIZE;
@@ -29,5 +29,5 @@ void Actor::collideWith(Actor* other) {
 }
 
 void Actor::die() {
-    marked_for_deletion = 1;
+    active = 0;
 }

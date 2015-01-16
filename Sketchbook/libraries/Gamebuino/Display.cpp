@@ -485,6 +485,9 @@ void Display::fillTriangle(int8_t x0, int8_t y0,
     }
 }
 
+
+
+
 void Display::drawBitmap(int8_t x, int8_t y, const uint8_t *bitmap) {
 	uint8_t w = pgm_read_byte(bitmap);
 	uint8_t h = pgm_read_byte(bitmap + 1);

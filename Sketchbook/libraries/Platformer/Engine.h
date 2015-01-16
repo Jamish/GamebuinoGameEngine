@@ -8,15 +8,14 @@
 #include "Actor.h"
 #include "Player.h"
 #include "Enemy.h"
-#include "EnemyChup.h"
-#include "EnemyChomp.h"
+#include "Signature.h"
 
 
-//crap
 extern Gamebuino gb;
 extern Engine eng;
 
-#define ACTORS 4
+#define SIGNATURES 32
+#define ENEMIES 8
 #define SPRITE_SIZE 6
 
 #define T_ACTOR 0
@@ -41,9 +40,10 @@ extern Engine eng;
 
 class Engine {
     public:
-		Actor* actors[ACTORS];
+		Signature signatures[SIGNATURES];
         Player player;
-        Enemy enemies[8];
+        Enemy enemies[ENEMIES];
+        int camera_x, camera_y;
         
         void begin();
 		void update();
@@ -51,13 +51,15 @@ class Engine {
         
         uint8_t tileAtPosition(int16_t x, int16_t y);
         bool solidCollisionAtPosition(int16_t x, int16_t y, int16_t w, int16_t h);
-        void addActor(Actor* actor);
-        void removeActor(uint8_t id);
+        
+        void addSignature(uint8_t tile_x, uint8_t tile_y, uint8_t type, uint8_t subtype);
+        void removeSignature(uint8_t id);
+        Enemy* getFreeEnemy();
+        
         void playSFX(uint8_t number);
         Engine();
 
     private:
-        int camera_x, camera_y;
 };
 
 #endif

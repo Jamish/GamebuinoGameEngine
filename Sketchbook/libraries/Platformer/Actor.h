@@ -10,7 +10,7 @@ class Actor {
         //Properties
         uint8_t type;
         uint8_t id;
-        bool marked_for_deletion;
+        bool active;
         float x;
         float y;
         uint8_t w;
@@ -18,8 +18,7 @@ class Actor {
         
         //Methods
         Actor();
-        void init(int _x, int _y);
-        void begin();
+        virtual void init(int _x, int _y);
         virtual void update();
         virtual void draw(int x_screen, int y_screen);
         virtual void collideWith(Actor* other);

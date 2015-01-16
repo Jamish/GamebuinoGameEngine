@@ -47,10 +47,7 @@ const unsigned int t_bass[] PROGMEM = {0x0002,2,0xFFFF};
 
 
 Engine::Engine() {
-    //Initialize actor pointers to NULL
-    for (int i = 0; i < ACTORS; i++) {
-        actors[i] = NULL;
-    }
+    
 }
 
 void Engine::begin() {
@@ -71,30 +68,43 @@ void Engine::begin() {
     
     
     //Delete all existing actors
-    for (int i = 0; i < ACTORS; i++) {
-        removeActor(i);
-    }
+    //for (int i = 0; i < ACTORS; i++) {
+        //removeActor(i);
+    //}
     
     camera_x = 0;
     camera_y = 0;
+    
+    addSignature(4, 6, T_PLAYER, 0);
+    addSignature(26, 4, T_ENEMY, T_E_CHUP);
    
-	
+	/*
+    
     player.init(342, 36);
 	addActor(&player);
-    actors[0]->init(342, 36);
+    enemies[0].init(138, 36, T_E_CHUP);
+    addActor(&enemies[0]);
     
-    Serial.println(sizeof(Enemy));
-    Serial.println(sizeof(EnemyChup));
-    Serial.println(sizeof(EnemyChomp));
+    */
     
-    delete &enemies[0];
-    enemies[0] = EnemyChup();
-    enemies[0].init(138, 36);
+    
+    // chup.init(138, 36);
+    // addActor(&chup);
+    
+    // chomp.init(182, 36);
+    // addActor(&chomp);
+    
+    
+    
+    
+    //delete &enemies[0];
+    //enemies[0] = EnemyChup();
+    //enemies[0].init(138, 36);
     
     //enemies[1] = new EnemyChup(132, 36);
     //enemies[2] = new EnemyChomp(182, 36);
     
-    addActor(&enemies[0]);
+    //addActor(enemies[0]);
     //addActor(enemies[1]);
     //addActor(enemies[2]);
     
@@ -110,23 +120,21 @@ void Engine::update() {
 		  begin();
 		}
         
-        
-        // Update actors
-        for (uint8_t i = 0; i < ACTORS; i++) {
-            if (actors[i]) {
-                actors[i]->update();
-            }
+              
+        // Update signatures
+        for (uint8_t i = 0; i < SIGNATURES; i++) {
+            signatures[i].update();
         }
         
         // Trigger collisions
-        for (uint8_t i = 0; i < ACTORS; i++) {
-            for (uint8_t j = 0; j < ACTORS; j++) {
+        for (uint8_t i = 0; i < SIGNATURES; i++) {
+            for (uint8_t j = 0; j < SIGNATURES; j++) {
                 //Don't collide with yourself. Don't check NULL actors
-                if (j == i || !actors[i] || !actors[j]) {
+                if (j == i || !signatures[i].actor || !signatures[j].actor) {
                     continue; 
                 }
-                Actor* a = actors[i];
-                Actor* b = actors[j];
+                Actor* a = signatures[i].actor;
+                Actor* b = signatures[j].actor;
                 if (gb.collideRectRect(a->x, a->y, a->w, a->h, b->x, b->y, b->w, b->h)) {
                     a->collideWith(b);
                 }
@@ -136,11 +144,11 @@ void Engine::update() {
         // Clean up actors that were marked for deletion
         // This is so that an actor never truly deletes itself to avoid null pointer exceptions 
         // when dealing with the "other" actor in Actor::collideWith
-        for (uint8_t i = 0; i < ACTORS; i++) {
-            if (actors[i] && actors[i]->marked_for_deletion) {
-                removeActor(i);
-            }
-        }
+        // for (uint8_t i = 0; i < collisions; i++) {
+            // if (actors[i] && actors[i]->active) {
+                // removeActor(i);
+            // }
+        // }
         
         // Draw tiles
         uint8_t w = pgm_read_byte(world);
@@ -214,14 +222,15 @@ void Engine::update() {
 
 
         // Draw Actors
-        for (int i = 0; i < ACTORS; i++) {
-            if (actors[i]) {                
-                int x_screen = actors[i]->x - camera_x;
-                int y_screen = actors[i]->y - camera_y;
+        for (int i = 0; i < SIGNATURES; i++) {
+            Actor* a = signatures[i].actor;
+            if (a) {                
+                int x_screen = a->x - camera_x;
+                int y_screen = a->y - camera_y;
                 if(x_screen < -SPRITE_SIZE || x_screen > LCDWIDTH || y_screen < -SPRITE_SIZE || y_screen > LCDHEIGHT){
                     continue; // don't draw actors which are out of the screen
                 }
-                actors[i]->draw(x_screen, y_screen);
+                a->draw(x_screen, y_screen);
             }
         }
         
@@ -285,21 +294,29 @@ bool Engine::solidCollisionAtPosition(int16_t x, int16_t y, int16_t w, int16_t h
 }
 
 
-// Find a spot in the array and start managing the new actor
-void Engine::addActor(Actor* actor) {
-    for (uint8_t i = 0; i < ACTORS; i++) {
-        if (!actors[i]) {
-            actors[i] = actor;
-            actor->id = i;
+// Find a spot in the array and start managing the new signature
+void Engine::addSignature(uint8_t tile_x, uint8_t tile_y, uint8_t type, uint8_t subtype) {
+    for (uint8_t i = 0; i < SIGNATURES; i++) {
+        if (!signatures[i].type_byte) {
+            signatures[i].init(tile_x, tile_y, type, subtype);
             break;
         }
     }
 }
 
 // Deallocate memory for the actor
-void Engine::removeActor(uint8_t id) {
-    delete actors[id];
-    actors[id] = NULL;    
+void Engine::removeSignature(uint8_t id) {
+    signatures[id].disable();
+}
+
+Enemy* Engine::getFreeEnemy() {
+    for (uint8_t i = 0; i < ENEMIES; i++) {
+        if (!enemies[i].active) {
+            return &enemies[i];
+        }
+    }
+    
+    return NULL;
 }
 
 

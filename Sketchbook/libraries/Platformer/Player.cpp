@@ -22,6 +22,8 @@ const byte ani_list[][8] PROGMEM =
 
 
 void Player::init(int _x, int _y) {
+    MovingActor::init(_x, _y);
+    
     type = T_PLAYER;
     facing = 1;
     
@@ -29,9 +31,7 @@ void Player::init(int _x, int _y) {
     ani_next = gb.frameCount + ani_timer;
     ani_length = 8;
     ani_frame = 0;
-    ani_current = 0; // running    
-    
-    MovingActor::init(_x, _y);
+    ani_current = 0; // running
 }
 
 void Player::update() {
@@ -247,6 +247,7 @@ void Player::die() {
 void Player::collideWith(Actor* other) {
     switch (other->type) {
         case T_ENEMY:
+            
             Enemy* o = static_cast<Enemy*>(other);
             if (!o->dead) {
                 if (vy > 0) {
@@ -257,6 +258,6 @@ void Player::collideWith(Actor* other) {
                     die();
                 }
             }
-        break;
+            break;
     }
 }
