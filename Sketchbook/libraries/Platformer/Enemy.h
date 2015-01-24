@@ -5,12 +5,14 @@
 
 #define T_E_CHUP 0
 #define T_E_CHOMP 1
+#define T_E_CHUP_FLY 2
 
 class Enemy : public MovingActor {
     public:  	
         //Properties
         uint8_t dead;
         uint8_t enemy_type;
+        
         // struct data {
             // byte b[8]; // 8 bytes of extra AI or whatever?
         // };
@@ -30,10 +32,12 @@ class Enemy : public MovingActor {
         void reverse();
         void update_chup();
         void update_chomp();
+        void update_chup_fly();
         void update_base();
         
         void draw_chup(int x_screen, int y_screen);
         void draw_chomp(int x_screen, int y_screen);
+        void draw_chup_fly(int x_screen, int y_screen);
         void draw_base(int x_screen, int y_screen);
         
 };

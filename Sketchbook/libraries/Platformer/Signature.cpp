@@ -28,8 +28,8 @@ void Signature::update() {
 
     // If off screen //on screen and the actor is null, initialize a new one using the types
     if(x_screen < -SPRITE_SIZE || x_screen > LCDWIDTH + (4*SPRITE_SIZE) || y_screen < -SPRITE_SIZE || y_screen > LCDHEIGHT + (4*SPRITE_SIZE)){
-        // If off screen, deactivate actor.
-        if (actor) {
+        // If off screen, deactivate actor (UNLESS IT'S A PLAYER).
+        if (actor && getType() != T_PLAYER) {
             disable();
         }
         

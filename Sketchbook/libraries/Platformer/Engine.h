@@ -40,7 +40,7 @@ extern Engine eng;
 
 class Engine {
     public:
-		Signature signatures[SIGNATURES];
+        Signature signatures[SIGNATURES];
         Player player;
         Enemy enemies[ENEMIES];
         int camera_x, camera_y;

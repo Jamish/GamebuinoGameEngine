@@ -77,6 +77,7 @@ void Engine::begin() {
     
     addSignature(4, 6, T_PLAYER, 0);
     addSignature(26, 4, T_ENEMY, T_E_CHUP);
+    addSignature(5, 2, T_ENEMY, T_E_CHUP_FLY);
    
 	/*
     

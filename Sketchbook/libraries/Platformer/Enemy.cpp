@@ -14,6 +14,13 @@ const byte spr_chomp[][8] PROGMEM =
     {8,6,0x0,0xFC,0xD4,0xFC,0xA8,0xFC,},
 };
 
+const byte spr_fly[][8] PROGMEM = {
+    {8,6,0x3C,0x44,0x9C,0x84,0x8C,0x70,},
+    {8,6,0x60,0x90,0xB0,0x90,0x90,0x60,},
+    {8,6,0x78,0xFC,0x58,0xEC,0xDC,0x78,},
+};
+
+
 Enemy::Enemy() : MovingActor() {
 }
 
@@ -23,6 +30,15 @@ void Enemy::init(int _x, int _y, uint8_t _enemy_type) {
     type = T_ENEMY;
     enemy_type = _enemy_type;
     facing = -1;
+    
+    switch(enemy_type) {
+        case T_E_CHUP_FLY:
+            vy = 2;
+            g = 0;
+            break;
+        default:
+            break;
+    }
 }
 
 void Enemy::update_chup() {
@@ -54,6 +70,20 @@ void Enemy::update_chomp() {
     }
 }
 
+void Enemy::update_chup_fly() {
+    if (!dead) {
+        if (vy > 0) {
+            g = -1;
+        } else if (vy < 0) {
+            g = 1;
+        }
+    } else {
+        g = 0.6;
+    }
+    
+    update_base();
+}
+
 void Enemy::update_base() {
     MovingActor::update();
     
@@ -71,11 +101,17 @@ void Enemy::update_base() {
     }
 }
 
-void Enemy::update() {
-    if (enemy_type == T_E_CHUP) {
-        update_chup();
-    } else if (enemy_type == T_E_CHOMP) {
-        update_chomp();
+void Enemy::update() {    
+    switch(enemy_type) {
+        case T_E_CHUP:
+            update_chup();
+            break;
+        case T_E_CHOMP:
+            update_chomp();
+            break;
+        case T_E_CHUP_FLY:
+            update_chup_fly();
+            break;
     }
 }
 
@@ -121,6 +157,32 @@ void Enemy::draw_chomp(int x_screen, int y_screen) {
     draw_base(x_screen, y_screen);
 }
 
+void Enemy::draw_chup_fly(int x_screen, int y_screen) {
+    if (dead == 0) {
+        uint8_t wing_index = (gb.frameCount/4) % 2;
+        gb.display.setColor(BLACK);
+        gb.display.drawBitmap(x_screen+6, y_screen, spr_fly[wing_index], NOROT, NOFLIP);
+        gb.display.drawBitmap(x_screen-9, y_screen, spr_fly[wing_index], NOROT, FLIPH);
+        
+        //draw a white "outline"
+        gb.display.setColor(WHITE);
+        gb.display.fillRect(x_screen, y_screen, w, h);
+
+        // uint8_t flip = NOFLIP;
+        // if (facing == -1) {
+            // x_screen -= SPRITE_SIZE/2;
+            // flip = FLIPH;
+        // }
+        
+        //uint8_t i = ((gb.frameCount/5) % 2) == 0;
+        
+        gb.display.setColor(BLACK);
+        gb.display.drawBitmap(x_screen, y_screen, spr_fly[2]);
+    }
+    
+    draw_base(x_screen, y_screen);
+}
+
 void Enemy::draw_base(int x_screen, int y_screen) {
     if (dead > 0 && (dead < 10 || gb.frameCount % 2)) {
         gb.display.fillRect(x_screen, y_screen + 4, SPRITE_SIZE, 2);
@@ -128,10 +190,16 @@ void Enemy::draw_base(int x_screen, int y_screen) {
 }
 
 void Enemy::draw(int x_screen, int y_screen) {
-    if (enemy_type == T_E_CHUP) {
-        draw_chup(x_screen, y_screen);
-    } else if (enemy_type == T_E_CHOMP) {
-        draw_chomp(x_screen, y_screen);
+    switch(enemy_type) {
+        case T_E_CHUP:
+            draw_chup(x_screen, y_screen);
+            break;
+        case T_E_CHOMP:
+            draw_chomp(x_screen, y_screen);
+            break;
+        case T_E_CHUP_FLY:
+            draw_chup_fly(x_screen, y_screen);
+            break;
     }
 }
 
