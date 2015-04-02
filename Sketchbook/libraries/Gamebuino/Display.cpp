@@ -23,7 +23,8 @@
 extern const uint8_t font3x5[] PROGMEM;
 
 // the memory buffer for the LCD
-uint8_t _displayBuffer[LCDWIDTH * LCDHEIGHT / 8];
+//uint8_t* _displayBuffer = file.buffer;
+uint8_t _displayBuffer[512];
 
 void Display::begin(int8_t SCLK, int8_t DIN, int8_t DC, int8_t CS, int8_t RST) {
     din = DIN;
@@ -270,7 +271,7 @@ void Display::drawLine(int8_t x0, int8_t y0, int8_t x1, int8_t y1) {
         }
     }
 }
-
+/*
 void Display::drawCircle(int8_t x0, int8_t y0, int8_t r) {
     int8_t f = 1 - r;
     int8_t ddF_x = 1;
@@ -305,6 +306,7 @@ void Display::drawCircle(int8_t x0, int8_t y0, int8_t r) {
 
     }
 }
+*/
 
 void Display::drawCircleHelper(int8_t x0, int8_t y0, int8_t r, uint8_t cornername) {
     int8_t f = 1 - r;
@@ -342,11 +344,13 @@ void Display::drawCircleHelper(int8_t x0, int8_t y0, int8_t r, uint8_t cornernam
     }
 }
 
+
+/*
 void Display::fillCircle(int8_t x0, int8_t y0, int8_t r) {
     drawFastVLine(x0, y0 - r, 2 * r + 1);
     fillCircleHelper(x0, y0, r, 3, 0);
 }
-
+*/
 // used to do circles and roundrects!
 void Display::fillCircleHelper(int8_t x0, int8_t y0, int8_t r, uint8_t cornername, int8_t delta) {
     int8_t f = 1 - r;
@@ -396,7 +400,7 @@ void Display::fillRoundRect(int8_t x, int8_t y, int8_t w,int8_t h, int8_t r) {
     fillCircleHelper(x + w - r - 1, y + r, r, 1, h - 2 * r - 1);
     fillCircleHelper(x + r, y + r, r, 2, h - 2 * r - 1);
 }
-
+/*
 void Display::drawTriangle(int8_t x0, int8_t y0,
         int8_t x1, int8_t y1,
         int8_t x2, int8_t y2) {
@@ -462,6 +466,7 @@ void Display::fillTriangle(int8_t x0, int8_t y0,
         a = x0 + (x1 - x0) * (y - y0) / (y1 - y0);
         b = x0 + (x2 - x0) * (y - y0) / (y2 - y0);
          */
+/*
         if (a > b) swap(a, b);
         drawFastHLine(a, y, b - a + 1);
     }
@@ -475,16 +480,17 @@ void Display::fillTriangle(int8_t x0, int8_t y0,
         b = x0 + sb / dy02;
         sa += dx12;
         sb += dx02;
-
+*/
         /* longhand:
                 a = x1 + (x2 - x1) * (y - y1) / (y2 - y1);
                 b = x0 + (x2 - x0) * (y - y0) / (y2 - y0);
          */
+/*
         if (a > b) swap(a, b);
         drawFastHLine(a, y, b - a + 1);
     }
 }
-
+*/
 
 
 

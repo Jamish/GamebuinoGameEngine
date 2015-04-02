@@ -145,7 +145,6 @@ void Player::update() {
     MovingActor::update();
     
     // From here on out is animation related stuff
-    eng.moveCamera(x - (LCDWIDTH/2) + (SPRITE_SIZE/2), 0);
     
     if (abs(vx) > 0) {
         ani_timer = 5;

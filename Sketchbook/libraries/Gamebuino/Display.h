@@ -23,6 +23,7 @@
 #include <Arduino.h>
 #include <avr/pgmspace.h>
 #include <SPI.h>
+//#include <tinyFAT.h>
 
 #include "settings.c"
 
@@ -84,6 +85,7 @@
 #define PCD8544_SETBIAS 0x10
 #define PCD8544_SETVOP 0x80
 
+//extern uint8_t* _displayBuffer;
 extern uint8_t _displayBuffer[];
 
 class Display : public Print {
@@ -110,13 +112,13 @@ public:
 	void fillRect(int8_t x, int8_t y, int8_t w, int8_t h);
 	void fillScreen(uint8_t color);
 
-	void drawCircle(int8_t x0, int8_t y0, int8_t r);
+	// void drawCircle(int8_t x0, int8_t y0, int8_t r);
 	void drawCircleHelper(int8_t x0, int8_t y0, int8_t r, uint8_t cornername);
-	void fillCircle(int8_t x0, int8_t y0, int8_t r);
+	// void fillCircle(int8_t x0, int8_t y0, int8_t r);
 	void fillCircleHelper(int8_t x0, int8_t y0, int8_t r, uint8_t cornername, int8_t delta);
 
-	void drawTriangle(int8_t x0, int8_t y0, int8_t x1, int8_t y1, int8_t x2, int8_t y2);
-	void fillTriangle(int8_t x0, int8_t y0, int8_t x1, int8_t y1, int8_t x2, int8_t y2);
+	// void drawTriangle(int8_t x0, int8_t y0, int8_t x1, int8_t y1, int8_t x2, int8_t y2);
+	// void fillTriangle(int8_t x0, int8_t y0, int8_t x1, int8_t y1, int8_t x2, int8_t y2);
 	void drawRoundRect(int8_t x0, int8_t y0, int8_t w, int8_t h, int8_t radius);
 	void fillRoundRect(int8_t x0, int8_t y0, int8_t w, int8_t h, int8_t radius);
 	

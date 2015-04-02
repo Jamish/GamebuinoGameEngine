@@ -2,7 +2,9 @@
 #define ENGINE_H
 
 #include <Arduino.h>
+#include <EEPROM.h>
 #include <SPI.h>
+#include <tinyFAT.h>
 #include <Gamebuino.h>
 
 #include "Actor.h"
@@ -44,10 +46,16 @@ class Engine {
         Player player;
         Enemy enemies[ENEMIES];
         int camera_x, camera_y;
+        int camera_anchor_x, camera_anchor_y;
+        int camera_target_x, camera_target_y;
+        int camera_current_offset_x, camera_current_offset_y;
         
         void begin();
 		void update();
-        void moveCamera(int x, int y);
+        void loadWorld(uint8_t id);
+        void moveCamera();
+        byte read(uint16_t offset);
+        void dumpBuffer(unsigned long start, int size);
         
         uint8_t tileAtPosition(int16_t x, int16_t y);
         bool solidCollisionAtPosition(int16_t x, int16_t y, int16_t w, int16_t h);
